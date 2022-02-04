@@ -1,0 +1,26 @@
+.control {
+  border: 1px solid red;
+  display: flex;
+  justify-content: space-around;
+}
+
+.formControl {
+  display: flex;
+  flex-direction: column;
+  min-width: 350px;
+  justify-content: space-around;
+}
+
+button {
+  font-size: large;
+  background-color: transparent;
+  border: 1px solid red;
+  color: red;
+  border-radius: 8px;
+}
+
+button:hover {
+  border: 1px solid green;
+  color: green;
+  cursor: pointer;
+}

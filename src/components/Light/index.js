@@ -24,7 +24,8 @@ export default function Light({color, size,lightOn}) {
                 style={{
                     width:`${size}px`,
                     height:`${size}px`,
-                    backgroundColor: lightOn ? color : '#444',
+                    backgroundColor: color ,
+                    opacity: lightOn ? 1 : 0.1
                 }}
             ></div>
         </div>
