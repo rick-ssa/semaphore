@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.light,
+.shine {
+  border-radius: 50%;
+  position: absolute;
+}
+
+.shine {
+  filter: blur(20px);
+}
