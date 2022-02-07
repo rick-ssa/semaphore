@@ -1,6 +1,6 @@
 
 import './App.css';
-import Control from './components/Control/Control';
+import Control from './components/Control';
 
 function App() {
   

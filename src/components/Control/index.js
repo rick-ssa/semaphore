@@ -1,5 +1,5 @@
 import './styles.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Semaphore from '../Semaphore'
 
 export default function Control() {
@@ -19,6 +19,34 @@ export default function Control() {
             lightOn:true
         },
     ])
+    const [isBlinking, setIsBlinking] = useState(false)
+    const [indexLightBlink, setIndexLightBlink] = useState(null)
+    const [idTimerBlink, setIdTimerBlink] = useState(0)
+
+    useEffect(()=>{
+        if(isBlinking) {
+            const idTimer = setTimeout(()=>blink(indexLightBlink),1000)
+            setIdTimerBlink(idTimer)
+        } else {
+            clearTimeout(idTimerBlink)
+        }
+    },[lights])
+    
+    const blink = (index) => {
+        if(!isBlinking) {
+            setIsBlinking(true)
+            setIndexLightBlink(index)
+            turnLightOn() // turn off all lights
+        } else {
+            const id = indexLightBlink === 3 ? 0 : indexLightBlink
+            if(lights[id].lightOn) {
+                turnLightOn() //turn off all lights
+            } else {
+                turnLightOn(indexLightBlink)
+            }
+        }
+
+    }
 
     const turnLightOn = (index) => {
         const newLights = lights.map((v,i)=>{
@@ -72,12 +100,16 @@ export default function Control() {
             />
 
             <div className='formControl'>
-                <button onClick={run}>run</button>
-                <button onClick={()=>turnLightOn(0)}>red</button>
-                <button onClick={()=>turnLightOn(1)}>yellow</button>
-                <button onClick={()=>turnLightOn(2)}>green</button>
-                <button onClick={()=>turnLightOn()}>off</button>
-                <button onClick={()=>turnLightOn(3)}>all</button>
+                <button onClick={()=>{run();setIsBlinking(false)}}>run</button>
+                <button onClick={()=>{turnLightOn(0);setIsBlinking(false)}}>red</button>
+                <button onClick={()=>{turnLightOn(1);setIsBlinking(false)}}>yellow</button>
+                <button onClick={()=>{turnLightOn(2);setIsBlinking(false)}}>green</button>
+                <button onClick={()=>{turnLightOn();setIsBlinking(false)}}>off</button>
+                <button onClick={()=>{turnLightOn(3);setIsBlinking(false)}}>all</button>
+                <button onClick={()=>{!isBlinking && blink(0)}}>blink red</button>
+                <button onClick={()=>{!isBlinking && blink(1)}}>blink yellow</button>
+                <button onClick={()=>{!isBlinking && blink(2)}}>blink green</button>
+                <button onClick={()=>{!isBlinking && blink(3)}}>blink all</button>
                 <input type='number' step={10} min={50} max={150} value={size} onChange={e=>setSize(Number(e.target.value))}/>
 
             </div>
