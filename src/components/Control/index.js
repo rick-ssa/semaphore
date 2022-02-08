@@ -98,7 +98,6 @@ export default function Control() {
                 lights={lights}
                 size ={size}
             />
-
             <div className='formControl'>
                 <button onClick={()=>{run();setIsBlinking(false)}}>run</button>
                 <button onClick={()=>{turnLightOn(0);setIsBlinking(false)}}>red</button>
