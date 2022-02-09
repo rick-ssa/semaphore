@@ -22,6 +22,8 @@ export default function Control() {
     const [isBlinking, setIsBlinking] = useState(false)
     const [indexLightBlink, setIndexLightBlink] = useState(null)
     const [idTimerBlink, setIdTimerBlink] = useState(0)
+    const [deg,setDeg] = useState(45)
+    const [idTimerBorder, setIdTimerBorder] = useState(0)
 
     useEffect(()=>{
         if(isBlinking) {
@@ -31,6 +33,7 @@ export default function Control() {
             clearTimeout(idTimerBlink)
         }
     },[lights])
+
     
     const blink = (index) => {
         if(!isBlinking) {

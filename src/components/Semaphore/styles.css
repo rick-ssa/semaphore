@@ -7,3 +7,17 @@
   align-items: center;
   border-radius: 20px;
 }
+
+.container-semaphore {
+  padding: 5px;
+  /* background-image: linear-gradient(
+    45deg,
+    red,
+    yellow,
+    green,
+    red,
+    yellow,
+    green
+  ); */
+  border-radius: 20px;
+}
